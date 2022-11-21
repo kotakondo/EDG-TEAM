@@ -24,6 +24,7 @@ add_message_files(
   MINCOTraj.msg
   CentralPos.msg
   CentralState.msg
+  CommDelay.msg
   )
   
 # Generate added messages and services with any dependencies listed here
