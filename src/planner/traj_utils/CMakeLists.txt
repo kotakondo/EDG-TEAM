@@ -25,7 +25,9 @@ add_message_files(
   CentralPos.msg
   CentralState.msg
   CommDelay.msg
-  )
+  GoalReached.msg
+  Collision.msg
+)
   
 # Generate added messages and services with any dependencies listed here
 generate_messages(
