@@ -55,13 +55,17 @@ if __name__ == '__main__':
 
             b = bagreader(rosbag[i], verbose=False);
             
-            for i in range(num_of_agents):
-                log_data = b.message_by_topic("/drone_"+str(i)+"_ego_planner_node/comm_delay")
+            for k in range(num_of_agents):
+                log_data = b.message_by_topic("/drone_"+str(k)+"_ego_planner_node/comm_delay")
                 try:
                     log = pd.read_csv(log_data)
 
                     for j in range(len(log.comm_delay)):
                         comm_delay.append(log.comm_delay[j])
+                        if log.comm_delay[j] > (cd+100)/1000:
+                            print(rosbag[i])
+                            print("drone"+str(k))
+                            print(str(log.comm_delay[j]*1000)+'ms')
                 except:
                     pass
 

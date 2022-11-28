@@ -3,9 +3,10 @@
 
 namespace ego_planner
 {
-void EGOReplanFSM::init(ros::NodeHandle &nh)
+void EGOReplanFSM::init(ros::NodeHandle &nh, ros::NodeHandle &nh1)
 {
   nh_ = nh;
+  nh1_ = nh1;
   exec_state_ = FSM_EXEC_STATE::INIT;
   have_target_ = false;
   have_odom_ = false;
@@ -1032,7 +1033,7 @@ void EGOReplanFSM::CommDelayBroadcastMINCOTrajCallback(const traj_utils::MINCOTr
 {
   alltrajs_.push_back(msg);
   ros::Timer alltrajs_timer =
-      nh_.createTimer(ros::Duration(commdelay_), &EGOReplanFSM::RecvBroadcastMINCOTrajCallback, this, true);
+      nh1_.createTimer(ros::Duration(commdelay_), &EGOReplanFSM::RecvBroadcastMINCOTrajCallback, this, true);
   alltrajsTimers_.push_back(alltrajs_timer);
 }
 

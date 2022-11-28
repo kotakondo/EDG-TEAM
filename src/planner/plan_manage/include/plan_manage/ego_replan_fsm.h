@@ -42,7 +42,7 @@ public:
   {
   }
 
-  void init(ros::NodeHandle &nh);
+  void init(ros::NodeHandle &nh, ros::NodeHandle &nh1);
 
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
@@ -108,6 +108,7 @@ private:
 
   /* node handle */
   ros::NodeHandle nh_;
+  ros::NodeHandle nh1_;
 
   /* record plan state */
   // ros::Publisher plan_state_pub_;

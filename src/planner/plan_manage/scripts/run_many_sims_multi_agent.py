@@ -39,9 +39,8 @@ if __name__ == '__main__':
     # parameters
     num_of_sims=1
     num_of_agents=10
-    how_long_to_wait = 30 #[s]
+    how_long_to_wait = 40 #[s]
     cd_list = [0, 50, 100, 200, 300]
-    cd_list = [0]
         
     # folder initialization
     folder_bags_list = []
