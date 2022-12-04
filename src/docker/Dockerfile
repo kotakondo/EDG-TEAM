@@ -3,6 +3,7 @@ FROM ros:noetic
 LABEL Maintainer="Kota Kondo <kkondo@mit.edu>" \
       Description="Ubuntu 20.04, ROS Noetic for EDG-TEAM"
 
+RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get update && \
       apt-get upgrade -y && \
       apt-get install -q -y --no-install-recommends git tmux vim apt-utils && \
@@ -17,8 +18,7 @@ RUN apt-get update && \
 	pip3 install scipy && \
       apt install libzmqpp-dev -y && \
       apt-get clean && \
-      apt-get install psmisc && \
-      rm -rf /var/lib/apt/lists/*
+      apt-get install psmisc
 
 # the code below is the replacement of "RUN bash src/edg_team/install_and_compile.sh"
 #INSTALL CGAL v4.14.2
