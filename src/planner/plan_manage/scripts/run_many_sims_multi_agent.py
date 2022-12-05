@@ -86,9 +86,9 @@ if __name__ == '__main__':
             # commands.append("sleep 2.0 && roslaunch --wait edg_team ave_distance.launch num_of_agents:="+str(num_of_agents)+" folder_loc:="+folder_csv+" sim:="+sim_id)
             commands.append("sleep 2.0 && roslaunch --wait edg_team goal_reached.launch") #we are calculating completion time here so sleep time needs to be the same as send_goal
 
-            commands.append("sleep 5.0 && roslaunch --wait edg_team multi_run.launch")
+            commands.append("sleep 10.0 && roslaunch --wait edg_team multi_run.launch")
             #publishing the goal should be the last command
-            commands.append("sleep 5.0 && tmux detach")
+            commands.append("sleep 10.0 && tmux detach")
 
             # print("len(commands)= " , len(commands))
             session_name="run_many_sims_multi_agent_session"
