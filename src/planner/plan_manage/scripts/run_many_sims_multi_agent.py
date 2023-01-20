@@ -82,7 +82,7 @@ if __name__ == '__main__':
                 commands.append("sleep 2.0 && rosparam set /drone_"+agent_id+"_ego_planner_node/fsm/commdelay "+str(cd_in_s))
 
             commands.append("sleep 2.0 && cd "+folder_bags+" && rosbag record -a -o edg_team_sim_" + sim_id + " __name:="+name_node_record)
-            commands.append("sleep 2.0 && roslaunch --wait edg_team collision_detector.launch num_of_agents:=" + str(num_of_agents))
+            # commands.append("sleep 2.0 && roslaunch --wait edg_team collision_detector.launch num_of_agents:=" + str(num_of_agents))
             # commands.append("sleep 2.0 && roslaunch --wait edg_team ave_distance.launch num_of_agents:="+str(num_of_agents)+" folder_loc:="+folder_csv+" sim:="+sim_id)
             commands.append("sleep 2.0 && roslaunch --wait edg_team goal_reached.launch") #we are calculating completion time here so sleep time needs to be the same as send_goal
 
