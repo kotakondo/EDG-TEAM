@@ -91,6 +91,7 @@ private:
   int min_num_, max_num_;
 
   bool have_trigger_, have_target_, have_odom_, have_new_target_, have_recv_pre_agent_, touch_goal_, mandatory_stop_;
+  bool is_started_tf_timer_ = false;
   FSM_EXEC_STATE exec_state_;
   int continously_called_times_{ 0 };
 
@@ -98,11 +99,12 @@ private:
   Eigen::Vector3d end_pt_;                              // goal state
   Eigen::Vector3d local_target_pt_, local_target_vel_;  // local target state
   Eigen::Vector3d odom_pos_, odom_vel_, odom_acc_;      // odometry state
+  Eigen::Quaterniond odom_orient_;
   std::vector<Eigen::Vector3d> wps_;
 
   /* ROS utils */
   ros::NodeHandle node_;
-  ros::Timer exec_timer_, safety_timer_;
+  ros::Timer exec_timer_, safety_timer_, tf_timer_;
   ros::Subscriber waypoint_sub_, odom_sub_, trigger_sub_, broadcast_ploytraj_sub_, mandatory_stop_sub_;
   ros::Publisher poly_traj_pub_, data_disp_pub_, broadcast_ploytraj_pub_, heartbeat_pub_, reach_goal_pub_;
 
@@ -140,6 +142,7 @@ private:
   /* state machine functions */
   void execFSMCallback(const ros::TimerEvent &e);
   void changeFSMExecState(FSM_EXEC_STATE new_state, string pos_call);
+  void tfCallback(const ros::TimerEvent &e);
   void printFSMExecState();
   std::pair<int, EGOReplanFSM::FSM_EXEC_STATE> timesOfConsecutiveStateCalls();
 
