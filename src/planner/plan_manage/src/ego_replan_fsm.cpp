@@ -58,6 +58,8 @@ void EGOReplanFSM::init(ros::NodeHandle &nh, ros::NodeHandle &nh1)
   /* callback */
   exec_timer_ = nh_.createTimer(ros::Duration(0.01), &EGOReplanFSM::execFSMCallback, this);
   safety_timer_ = nh_.createTimer(ros::Duration(0.05), &EGOReplanFSM::checkCollisionCallback, this);
+  tf_timer_ = nh_.createTimer(ros::Duration(0.01), &EGOReplanFSM::tfCallback, this);
+  tf_timer_.stop();
 
   odom_sub_ = nh_.subscribe("odom_world", 1, &EGOReplanFSM::odometryCallback, this);
   mandatory_stop_sub_ = nh_.subscribe("mandatory_stop", 1, &EGOReplanFSM::mandatoryStopCallback, this);
@@ -1048,6 +1050,11 @@ void EGOReplanFSM::tfCallback(const ros::TimerEvent &e)
   transformStamped.transform.rotation.w = odom_orient_.w();
 
   br.sendTransform(transformStamped);
+
+  if (is_goal_reached_)
+  {
+    tf_timer_.stop();
+  }
 }
 
 void EGOReplanFSM::triggerCallback(const geometry_msgs::PoseStampedPtr &msg)

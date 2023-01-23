@@ -37,7 +37,7 @@ def myhook():
 if __name__ == '__main__':
 
     # parameters
-    num_of_sims=1
+    num_of_sims=110
     num_of_agents=10
     how_long_to_wait = 40 #[s]
     cd_list = [0, 50, 100, 200, 300]
@@ -86,9 +86,9 @@ if __name__ == '__main__':
             # commands.append("sleep 2.0 && roslaunch --wait edg_team ave_distance.launch num_of_agents:="+str(num_of_agents)+" folder_loc:="+folder_csv+" sim:="+sim_id)
             commands.append("sleep 2.0 && roslaunch --wait edg_team goal_reached.launch") #we are calculating completion time here so sleep time needs to be the same as send_goal
 
-            commands.append("sleep 10.0 && roslaunch --wait edg_team multi_run.launch")
+            commands.append("sleep 5.0 && roslaunch --wait edg_team multi_run.launch")
             #publishing the goal should be the last command
-            commands.append("sleep 10.0 && tmux detach")
+            commands.append("sleep 5.0 && tmux detach")
 
             # print("len(commands)= " , len(commands))
             session_name="run_many_sims_multi_agent_session"
@@ -148,9 +148,9 @@ os.system("tmux kill-session -t" + session_name)
 os.system("tmux new-session -d -s "+str(session_name)+" -x 300 -y 300")
 
 commands = []
-commands.append("sleep 3.0 && roscd edg_team && cd scripts && python collision_check.py")
-commands.append("sleep 3.0 && roscd edg_team && cd scripts && python completion_time.py")
-commands.append("sleep 3.0 && roscd edg_team && cd scripts && python comm_delay_histogram_percentile.py")
+# commands.append("sleep 3.0 && roscd edg_team && cd scripts && python collision_check.py")
+# commands.append("sleep 3.0 && roscd edg_team && cd scripts && python completion_time.py")
+# commands.append("sleep 3.0 && roscd edg_team && cd scripts && python comm_delay_histogram_percentile.py")
 # commands.append("sleep 3.0 && roscd edg_team && cd scripts && python ave_distance_csv2txt.py")
 # commands.append("sleep 3.0 && roscd edg_team && cd scripts && python total_dist_and_stoppage_edg_team.py")
 # commands.append("sleep 3.0 && roscd edg_team && cd scripts && python detect_who_died_edg_team.py")
