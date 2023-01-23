@@ -1051,7 +1051,7 @@ void EGOReplanFSM::tfCallback(const ros::TimerEvent &e)
 
   br.sendTransform(transformStamped);
 
-  if (is_goal_reached_)
+  if (de_reach_goal_)
   {
     tf_timer_.stop();
   }
