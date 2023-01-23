@@ -1025,7 +1025,7 @@ void EGOReplanFSM::odometryCallback(const nav_msgs::OdometryConstPtr &msg)
   if (have_odom_ && !is_started_tf_timer_)
   {
     tf_timer_.start();
-    is_started_tf_timer_ = true
+    is_started_tf_timer_ = true;
   }
 }
 
@@ -1037,7 +1037,7 @@ void EGOReplanFSM::tfCallback(const ros::TimerEvent &e)
 
   transformStamped.header.stamp = ros::Time::now();
   transformStamped.header.frame_id = "world";
-  transformStamped.child_frame_id = string("drone_") + std::to_string(planner_manager_->pp_.drone_id - 1);
+  transformStamped.child_frame_id = string("drone_") + std::to_string(planner_manager_->pp_.drone_id);
 
   transformStamped.transform.translation.x = odom_pos_(0);
   transformStamped.transform.translation.y = odom_pos_(1);
