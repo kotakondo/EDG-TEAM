@@ -48,3 +48,5 @@ RUN echo 'alias cb="catkin build"' >> ~/.bashrc && \
       echo 'alias rvmd="roscd edg_team && cd rviz_cfgs && rosrun rviz rviz -d edg_team.rviz"' >> ~/.bashrc && \
       echo 'alias tks="tmux kill-server"' >> ~/.bashrc
 RUN mkdir -p /home/kota/data/edg_team
+
+WORKDIR /home/kota/edg_team_ws/EDG-TEAM/src/planner/plan_manage/scripts
