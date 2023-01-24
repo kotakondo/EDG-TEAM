@@ -1022,6 +1022,11 @@ void EGOReplanFSM::odometryCallback(const nav_msgs::OdometryConstPtr &msg)
   odom_vel_(1) = msg->twist.twist.linear.y;
   odom_vel_(2) = msg->twist.twist.linear.z;
 
+  odom_orient_.w() = msg->pose.pose.orientation.w;
+  odom_orient_.x() = msg->pose.pose.orientation.x;
+  odom_orient_.y() = msg->pose.pose.orientation.y;
+  odom_orient_.z() = msg->pose.pose.orientation.z;
+
   have_odom_ = true;
 
   if (have_odom_ && !is_started_tf_timer_)
